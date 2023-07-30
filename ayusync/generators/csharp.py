@@ -15,7 +15,7 @@ CLASS_TEMPLATE = '''namespace AyuGram.Sync.Core.Models;
 
 public sealed class %s : SyncEvent
 {
-    public readonly %sArgs Args = new();
+    public %sArgs Args { get; set; } = new();
     public override string Type { get; protected set; } = "%s";
 
     public sealed class %sArgs
@@ -51,7 +51,7 @@ def generate_args_str(fields, map_to_list, ident):
             stripped = arg.type[:-2]
             mapped_type = f'List<{TYPE_MAP.get(stripped, stripped)}>'
 
-        args_str += ident_str + 'public ' + mapped_type + ' ' + camel_case(arg.name) + ';\n'
+        args_str += ident_str + 'public ' + mapped_type + ' ' + camel_case(arg.name) + ' { get; set; }\n'
 
     args_str = args_str.rstrip('\n')
     return args_str
@@ -83,7 +83,6 @@ class CSharpGenerator(ModelGenerator):
         for entity in self.entities:
             args_str = generate_args_str(entity.fields, False, ident=4)
 
-            name_str = ''
             if entity.is_abstract:
                 name_str = 'abstract class ' + entity.name
             elif entity.derives:

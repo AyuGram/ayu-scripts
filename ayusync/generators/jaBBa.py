@@ -33,7 +33,7 @@ package com.radolyn.ayugram.sync.models;
 public class %s implements SyncEvent {
     public String type = "%s";
     public long userId;
-    public %s.%sArgs args;
+    public %s.%sArgs args = new %s.%sArgs();
 
     public static class %sArgs {
 %s
@@ -75,6 +75,8 @@ class JavaGenerator(ModelGenerator):
                 imports_str,
                 base_class.name,
                 base_class.type,
+                base_class.name,
+                base_class.name,
                 base_class.name,
                 base_class.name,
                 base_class.name,
