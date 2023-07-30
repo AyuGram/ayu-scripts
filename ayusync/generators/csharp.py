@@ -2,8 +2,11 @@ import os
 
 from ayusync.generators import ModelGenerator
 
-BASE_CLASS = '''namespace AyuGram.Sync.Core.Models;
+BASE_CLASS = '''using System.Text.Json.Serialization;
 
+namespace AyuGram.Sync.Core.Models;
+
+%s
 public abstract class SyncEvent
 {
     public virtual string Type { get; protected set; } = "sync_unspecified";
@@ -61,8 +64,10 @@ class CSharpGenerator(ModelGenerator):
     lang = 'csharp'
 
     def prepare(self):
+        attrs = '\n'.join(f'[JsonDerivedType(typeof({base_class.name}))]' for base_class in self.classes)
+
         with open(os.path.join(self.base_path, 'SyncEvent.cs'), 'w', encoding='utf-8') as f:
-            f.write(BASE_CLASS)
+            f.write(BASE_CLASS % attrs)
 
     def generate_schema(self):
         for base_class in self.classes:
