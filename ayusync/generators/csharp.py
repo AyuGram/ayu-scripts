@@ -28,6 +28,10 @@ public sealed class %s : SyncEvent
 TYPE_MAP = {}
 
 
+def camel_case(s):
+    return s[0].upper() + s[1:]
+
+
 class CSharpGenerator(SchemaGenerator):
     lang = 'csharp'
 
@@ -46,7 +50,7 @@ class CSharpGenerator(SchemaGenerator):
                     stripped = arg.type[:-2]
                     mapped_type = f'List<{TYPE_MAP.get(stripped, stripped)}>'
 
-                args_str += '        public ' + mapped_type + ' ' + arg.name + ';\n'
+                args_str += '        public ' + mapped_type + ' ' + camel_case(arg.name) + ';\n'
 
             args_str = args_str.rstrip('\n')
 

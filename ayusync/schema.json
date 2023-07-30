@@ -8,7 +8,7 @@
   {
     "name": "SyncForce",
     "args": {
-      "fromDate": "int"
+      "fromDate": "long"
     }
   },
   {
