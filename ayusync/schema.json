@@ -1,0 +1,26 @@
+[
+  {
+    "name": "SyncBatch",
+    "args": {
+      "events": "SyncEvent[]"
+    }
+  },
+  {
+    "name": "SyncForce",
+    "args": {
+      "fromDate": "int"
+    }
+  },
+  {
+    "name": "SyncForceFinish",
+    "args": {}
+  },
+  {
+    "name": "SyncRead",
+    "args": {
+      "dialogId": "long",
+      "untilId": "int",
+      "unread": "int"
+    }
+  }
+]
