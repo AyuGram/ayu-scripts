@@ -1,6 +1,6 @@
 import os.path
 
-from ayusync.generators import SchemaGenerator
+from ayusync.generators import ModelGenerator
 
 BASE_CLASS = '''/*
  * This is the source code of AyuGram for Android.
@@ -44,14 +44,14 @@ public class %s implements SyncEvent {
 TYPE_MAP = {}
 
 
-class JavaGenerator(SchemaGenerator):
+class JavaGenerator(ModelGenerator):
     lang = 'java'
 
     def prepare(self):
         with open(os.path.join(self.base_path, 'SyncEvent.java'), 'w', encoding='utf-8') as f:
             f.write(BASE_CLASS)
 
-    def generate(self):
+    def generate_schema(self):
         for base_class in self.classes:
             imports_str = ''
             args_str = ''
@@ -83,3 +83,6 @@ class JavaGenerator(SchemaGenerator):
 
             with open(os.path.join(self.base_path, base_class.name + '.java'), 'w', encoding='utf-8') as f:
                 f.write(res)
+
+    def generate_entities(self):
+        print('Java entity generator not implemented.')

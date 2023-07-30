@@ -1,0 +1,47 @@
+[
+  {
+    "name": "AyuMessageBase",
+    "fields": {
+      "userId": "long",
+      "dialogId": "long",
+      "groupedId": "long",
+      "peerId": "long",
+      "fromId": "long",
+      "topicId": "long",
+      "messageId": "int",
+      "date": "int",
+      "flags": "int",
+      "editDate": "int",
+      "views": "int",
+      "fwdFlags": "int",
+      "fwdFromId": "long",
+      "fwdName": "string",
+      "fwdDate": "int",
+      "fwdPostAuthor": "string",
+      "replyFlags": "int",
+      "replyMessageId": "int",
+      "replyPeerId": "long",
+      "replyTopId": "int",
+      "replyForumTopic": "bool",
+      "entityCreateDate": "int",
+      "text": "string",
+      "textEntities": "byte[]",
+      "mediaPath": "string",
+      "hqThumbPath": "string",
+      "documentType": "int",
+      "documentSerialized": "byte[]",
+      "thumbsSerialized": "byte[]",
+      "documentAttributesSerialized": "byte[]",
+      "mimeType": "string"
+    },
+    "abstract": true
+  },
+  {
+    "name": "DeletedMessage",
+    "derives": "AyuMessageBase"
+  },
+  {
+    "name": "EditedMessage",
+    "derives": "AyuMessageBase"
+  }
+]

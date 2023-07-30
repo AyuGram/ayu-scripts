@@ -22,5 +22,17 @@
       "untilId": "int",
       "unread": "int"
     }
+  },
+  {
+    "name": "SyncDeletedMessage",
+    "args": {
+      "message": "DeletedMessage"
+    }
+  },
+  {
+    "name": "SyncEditedMessage",
+    "args": {
+      "message": "EditedMessage"
+    }
   }
 ]
