@@ -43,5 +43,17 @@
   {
     "name": "EditedMessage",
     "derives": "AyuMessageBase"
+  },
+  {
+    "name": "DeletedDialog",
+    "fields": {
+      "userId": "long",
+      "dialogId": "long",
+      "peerId": "long",
+      "topMessage": "int",
+      "lastMessageDate": "int",
+      "flags": "int",
+      "entityCreateDate": "int"
+    }
   }
 ]
