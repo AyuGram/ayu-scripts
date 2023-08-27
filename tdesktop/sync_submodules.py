@@ -1,12 +1,23 @@
 import os
 import re
 import subprocess
+import sys
 import time
 
 import requests
 
 with open('.gitmodules') as f:
     local_data = f.read()
+
+
+def parse_latest_tag():
+    r = requests.get('https://github.com/telegramdesktop/tdesktop/tags')
+    regex = re.compile(r'<a href="/telegramdesktop/tdesktop/releases/tag/(.*?)"')
+
+    try:
+        return regex.search(r.text).group(1)
+    except:
+        return None
 
 
 def parse_submodules(submodules_content):
@@ -21,9 +32,9 @@ def parse_submodules(submodules_content):
     return submodules
 
 
-def parse_remote_commit(path):
+def parse_remote_commit(tag, path):
     if path == 'cmake':
-        r = requests.get('https://github.com/telegramdesktop/tdesktop/tree/dev')
+        r = requests.get(f'https://github.com/telegramdesktop/tdesktop/tree/{tag}')
         regex = re.compile(r'cmake @ (.*?)<')
 
         try:
@@ -33,7 +44,7 @@ def parse_remote_commit(path):
 
     parent = os.path.dirname(path)
 
-    r = requests.get('https://github.com/telegramdesktop/tdesktop/tree/dev/' + parent)
+    r = requests.get(f'https://github.com/telegramdesktop/tdesktop/tree/{tag}/{parent}')
 
     try:
         data = r.json()
@@ -45,6 +56,13 @@ def parse_remote_commit(path):
             return item['submoduleDisplayName'].split(' @ ')[1]
 
 
+remote_tag = parse_latest_tag()
+if not remote_tag:
+    print('Failed to parse latest tag')
+    sys.exit(1)
+
+print(f'Latest tag: {remote_tag}')
+
 mismatched = {}
 
 local_submodules = parse_submodules(local_data)
@@ -55,7 +73,7 @@ for submodule in local_submodules:
     remote_commit = None
 
     while remote_commit is None:
-        remote_commit = parse_remote_commit(path)
+        remote_commit = parse_remote_commit(remote_tag, path)
 
         if remote_commit is None:
             time.sleep(3)
