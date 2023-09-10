@@ -42,6 +42,7 @@ def main():
     generators = [
         CSharpGenerator(classes, entities, base_path),
         JavaGenerator(classes, entities, base_path),
+        CppGenerator(classes, entities, base_path),
     ]
 
     for generator in generators:
