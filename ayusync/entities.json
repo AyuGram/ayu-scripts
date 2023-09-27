@@ -55,5 +55,14 @@
       "flags": "int",
       "entityCreateDate": "int"
     }
+  },
+  {
+    "name": "RegexFilter",
+    "fields": {
+      "text": "string",
+      "enabled": "bool",
+      "caseInsensitive": "bool",
+      "dialogId": "long?"
+    }
   }
 ]

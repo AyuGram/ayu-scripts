@@ -93,6 +93,7 @@ JSON_BASED_TEMPLATE = 'NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(%s, %s)'
 TYPE_MAP = {
     'string': 'std::string',
     'long': 'ID',
+    'long?': 'std::unique_ptr<ID>',
     'byte[]': 'std::vector<char>',
     'SyncEvent[]': 'std::vector<json>',
     # temp solution

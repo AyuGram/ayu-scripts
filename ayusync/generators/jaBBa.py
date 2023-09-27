@@ -59,7 +59,8 @@ public %s {
 
 TYPE_MAP = {
     'string': 'String',
-    'bool': 'boolean'
+    'bool': 'boolean',
+    'long?': 'Long'
 }
 
 

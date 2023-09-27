@@ -8,7 +8,7 @@
     </envs>
     <option name="SDK_HOME" value="Y:\AyuGram\tdesktop-scripts\venv\Scripts\python.exe" />
     <option name="SDK_NAME" value="Python 3.10 (tdesktop-scripts)" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../desktop-new/tdesktop" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../AyuGramDesktop/tdesktop" />
     <option name="IS_MODULE_SDK" value="false" />
     <option name="ADD_CONTENT_ROOTS" value="true" />
     <option name="ADD_SOURCE_ROOTS" value="true" />
